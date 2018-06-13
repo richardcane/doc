@@ -2,11 +2,12 @@ package cmd
 
 import (
 	"context"
-	"doc/flags"
 	"fmt"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/richardcane/doc/flags"
 
 	"github.com/docker/libcompose/docker"
 	"github.com/docker/libcompose/docker/ctx"

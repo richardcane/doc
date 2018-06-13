@@ -1,8 +1,9 @@
 package cmd
 
 import (
-	"doc/flags"
 	"os"
+
+	"github.com/richardcane/doc/flags"
 
 	"github.com/spf13/cobra"
 )

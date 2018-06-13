@@ -1,8 +1,9 @@
 package main
 
 import (
-	"doc/cmd"
 	"log"
+
+	"github.com/richardcane/doc/cmd"
 )
 
 func main() {
