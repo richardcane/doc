@@ -3,13 +3,21 @@ package cmd
 import (
 	"os"
 
+	"github.com/docker/libcompose/project"
+
 	"github.com/richardcane/doc/flags"
 
 	"github.com/spf13/cobra"
 )
 
+var loadedProject *project.Project
+
 func init() {
-	doc.PersistentFlags().StringVarP(&flags.FilePath, "file", "f", "", "Docker-compose file to load (default is docker-compose.yml)")
+	doc.PersistentFlags().StringSliceVarP(&flags.FilePaths,
+		"file",
+		"f",
+		[]string{},
+		"Docker-compose file to load (default is docker-compose.yml)")
 
 	doc.AddCommand(up)
 	doc.AddCommand(down)
@@ -17,19 +25,16 @@ func init() {
 
 var doc = &cobra.Command{
 	Use: "doc",
-	PersistentPreRun: func(cmd *cobra.Command, args []string) {
-		if len(os.Args) > 1 && os.Args[1] != "help" {
-		}
-	},
 	Run: func(cmd *cobra.Command, args []string) {
 		cmd.Help()
 	},
 }
 
 var up = &cobra.Command{
-	Use:   "up",
-	Short: "Start/build one or more docker containers from docker-compose",
-	Run:   upRun,
+	Use:    "up",
+	Short:  "Start/build one or more docker containers from docker-compose",
+	PreRun: upPreRun,
+	Run:    upRun,
 }
 
 var down = &cobra.Command{
