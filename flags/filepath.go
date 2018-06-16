@@ -1,3 +1,3 @@
 package flags
 
-var FilePath string
+var FilePaths []string
